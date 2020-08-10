@@ -19,7 +19,7 @@ class Graph:
 
     def add_edge(self, v1, v2):
         if v1 in self.vertices and v2 in self.vertices:
-            self.vertices[v1].add[v2]
+            self.vertices[v1].add(v2)
         else:
             raise IndexError("vertex does not exist")
 
@@ -63,7 +63,28 @@ class Graph:
         Print each vertex in depth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        # make a stack
+        s = Stack()
+        # push onto our starting node
+        s.push(starting_vertex)
+        # make a set to track if we visited that node before
+        visited = set()
+        # while the stack is not empty
+        while s.size() > 0:
+            # pop off whatever is at the top(This is the current node.)
+            current_node = s.pop()
+        # if we have not visited that node before
+            if current_node not in visited:
+                # run fn and print current node
+                print(current_node)
+        # # we mark it as visited
+                visited.add(current_node)
+        # we then get each of the node it is connected to
+                neighbors = self.get_neighbors(current_node)
+        # for each in the nodes that is connected(neighbors)
+                for neighbor in neighbors:
+                    # push it to the stack.
+                    s.push(neighbor)
 
     def dft_recursive(self, starting_vertex):
         """
@@ -111,16 +132,16 @@ if __name__ == '__main__':
     graph.add_vertex(5)
     graph.add_vertex(6)
     graph.add_vertex(7)
-    # graph.add_edge(5, 3)
-    # graph.add_edge(6, 3)
-    # graph.add_edge(7, 1)
-    # graph.add_edge(4, 7)
-    # graph.add_edge(1, 2)
-    # graph.add_edge(7, 6)
-    # graph.add_edge(2, 4)
-    # graph.add_edge(3, 5)
-    # graph.add_edge(2, 3)
-    # graph.add_edge(4, 6)
+    graph.add_edge(5, 3)
+    graph.add_edge(6, 3)
+    graph.add_edge(7, 1)
+    graph.add_edge(4, 7)
+    graph.add_edge(1, 2)
+    graph.add_edge(7, 6)
+    graph.add_edge(2, 4)
+    graph.add_edge(3, 5)
+    graph.add_edge(2, 3)
+    graph.add_edge(4, 6)
 
     '''
     Should print:
