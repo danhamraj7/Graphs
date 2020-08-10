@@ -34,7 +34,29 @@ class Graph:
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        # make a queue
+        q = Queue()
+        # enqueue the starting node
+        q.enqueue(starting_vertex)
+        # make a set to track if we being here before.
+        visited = set()
+        # while the queue is not empty
+        while q.size() > 0:
+            # dequeue whatever is at the front of the line
+            # (this is the current node)
+            current_node = q.dequeue()
+        # if the curr_node is a node that was
+        # not visited
+        if current_node not in visited:
+            print(current_node)
+            # add it to visited
+            visited.add(current_node)
+        # get the nodes that it is connected to.
+            neighbors = self.get_neighbors(current_node)
+        # for each of those nodes
+            for neighbor in neighbors:
+                # add them to the queue
+                q.enqueue(neighbor)
 
     def dft(self, starting_vertex):
         """
@@ -89,16 +111,16 @@ if __name__ == '__main__':
     graph.add_vertex(5)
     graph.add_vertex(6)
     graph.add_vertex(7)
-    graph.add_edge(5, 3)
-    graph.add_edge(6, 3)
-    graph.add_edge(7, 1)
-    graph.add_edge(4, 7)
-    graph.add_edge(1, 2)
-    graph.add_edge(7, 6)
-    graph.add_edge(2, 4)
-    graph.add_edge(3, 5)
-    graph.add_edge(2, 3)
-    graph.add_edge(4, 6)
+    # graph.add_edge(5, 3)
+    # graph.add_edge(6, 3)
+    # graph.add_edge(7, 1)
+    # graph.add_edge(4, 7)
+    # graph.add_edge(1, 2)
+    # graph.add_edge(7, 6)
+    # graph.add_edge(2, 4)
+    # graph.add_edge(3, 5)
+    # graph.add_edge(2, 3)
+    # graph.add_edge(4, 6)
 
     '''
     Should print:
