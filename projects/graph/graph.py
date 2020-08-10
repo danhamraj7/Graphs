@@ -86,14 +86,14 @@ class Graph:
                     # push it to the stack.
                     s.push(neighbor)
 
-    def dft_recursive(self, starting_vertex):
+    def dft_recursive(self, starting_vertex, visited=set()):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
 
         This should be done using recursion.
         """
-        pass  # TODO
+        pass
 
     def bfs(self, starting_vertex, destination_vertex):
         """
@@ -101,7 +101,38 @@ class Graph:
         starting_vertex to destination_vertex in
         breath-first order.
         """
-        pass  # TODO
+        # make a queue
+        q = Queue()
+        # make a set for visited
+        visited = set()
+        # enqueue A PATH TO the starting_vertex
+        q.enqueue([starting_vertex])
+        # while the stack is not empty
+        while q.size() > 0:
+            # dequeue the next path(current path)
+            current_path = q.dequeue()
+            # current node is the last thing in the path
+            current_node = current_path[-1]
+            # check if the current node is the one we want
+            if current_node == destination_vertex:
+                # return it
+                return current_path
+
+            else:
+                # if the current node is not in the visited
+                if current_node not in visited:
+                    # add it to visited
+                    visited.add(current_node)
+                    # get the nodes that is connected to curr node
+                    edges = self.get_neighbors(current_node)
+                    # loop over edges
+                    for edge in edges:
+                        # make a list with the paths
+                        path_copy = list(current_path)
+                        # append the path to the list
+                        path_copy.append(edge)
+                        # enqueue fn and pass in path copy
+                        q.enqueue(path_copy)
 
     def dfs(self, starting_vertex, destination_vertex):
         """
