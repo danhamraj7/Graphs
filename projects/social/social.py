@@ -119,6 +119,9 @@ class SocialGraph:
         for friendship in random_friendships:
             self.add_friendship(friendship[0], friendship[1])
 
+    def get_friendships(self, user_id):
+        return self.friendships[user_id]
+
     def get_all_social_paths(self, user_id):
         """
         Takes a user's user_id as an argument
@@ -128,10 +131,34 @@ class SocialGraph:
 
         The key is the friend's ID and the value is the path.
         """
-        visited = {}  # Note that this is a dictionary, not a set
+
         # !!!! IMPLEMENT ME
         # use BFS because we are ask for the shortest friendship path
+        visited = {}  # Note that this is a dictionary, not a set
         # create a queue
+        queue = Queue()
+        # unqueue path to user id
+        path = [user_id]
+        queue.enqueue(path)
+        # while the queue is not empty
+        while queue.size() > 0:
+            # dequeue whatever is at the front of the line
+            # (this is the current path)
+            current_path = queue.dequeue()
+            # new user id is the last thing in the path
+            new_user_id = current_path[-1]
+            # check if the new user id is in visited
+            if new_user_id not in visited:
+                # add the new user id to the dict
+                visited[new_user_id] = current_path
+                # iterate through the friendship of the current user
+                friends = self.get_friendships(new_user_id)
+                for friend in friends:
+                    # copy the path and
+                    # append a friend to their own copy
+                    path_copy = list(current_path)
+                    path_copy.append(friend)
+                    queue.enqueue(path_copy)
         return visited
 
 
