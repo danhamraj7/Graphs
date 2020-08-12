@@ -79,7 +79,7 @@ def earliest_ancestor(ancestors, starting_node):
     visited = set()
     # push A PATH TO the starting_vertex
     s.push([starting_node])
-    # keep track of longest path
+    # As we traverse through keep track of longest path
     longest_path = []
     # earliest ancestor
     aged_one = -1
@@ -93,6 +93,7 @@ def earliest_ancestor(ancestors, starting_node):
         # if path is longer or path is equal but the id is smaller
         if (len(path) > len(longest_path)) or (len(path) == len(longest_path) and current_node < aged_one):
             longest_path = path
+            # the last thing in the path
             aged_one = longest_path[-1]
 
             if current_node not in visited:
