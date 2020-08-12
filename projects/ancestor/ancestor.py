@@ -49,10 +49,8 @@ class Graph:
             self.vertices[vertex] = set()
 
     def add_edge(self, v1, v2):
-        """
-        Add a directed edge to the graph.
-        """
-        self.vertices[v1].add(v2)
+        if v1 in self.vertices and v2 in self.vertices:
+            self.vertices[v1].add(v2)
 
     def get_neighbors(self, vertex):
         """
@@ -73,4 +71,37 @@ def build_graph(ancestors):
 
 
 def earliest_ancestor(ancestors, starting_node):
-    pass
+    graph = build_graph(ancestors)
+
+    # make a stack
+    s = Stack()
+    # make a set for visited
+    visited = set()
+    # push A PATH TO the starting_vertex
+    s.push([starting_node])
+    # keep track of longest path
+    longest_path = []
+    # earliest ancestor
+    aged_one = -1
+    # while the stack is not empty
+    while s.size() > 0:
+        # pop  the  path
+        path = s.pop()
+        # current node is the last thing in the path
+        current_node = path[-1]
+        # check if the current node is the one we want
+        # if path is longer or path is equal but the id is smaller
+        if (len(path) > len(longest_path)) or (len(path) == len(longest_path) and current_node < aged_one):
+            longest_path = path
+            aged_one = longest_path[-1]
+
+            if current_node not in visited:
+                # add it
+                visited.add(current_node)
+
+                parents = graph.get_neighbors(current_node)
+
+                for parent in parents:
+                    new_path = path + [parent]
+                    s.push(new_path)
+            return longest_path[-1]
