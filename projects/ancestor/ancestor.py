@@ -91,7 +91,7 @@ def earliest_ancestor(ancestors, starting_node):
         current_node = path[-1]
         # check if the current node is the one we want
         # if path is longer or path is equal but the id is smaller
-        if (len(path) > len(longest_path)) or (len(path) == len(longest_path) and current_node < aged_one):
+        if (len(path) >= len(longest_path) and current_node < aged_one or len(path) > len(longest_path)):
             longest_path = path
             # the last thing in the path
             aged_one = longest_path[-1]
