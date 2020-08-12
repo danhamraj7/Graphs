@@ -45,18 +45,18 @@ class Graph:
             # dequeue whatever is at the front of the line
             # (this is the current node)
             current_node = q.dequeue()
-        # if the curr_node is a node that was
-        # not visited
-        if current_node not in visited:
-            print(current_node)
-            # add it to visited
-            visited.add(current_node)
-        # get the nodes that it is connected to.
-            neighbors = self.get_neighbors(current_node)
-        # for each of those nodes
-            for neighbor in neighbors:
-                # add them to the queue
-                q.enqueue(neighbor)
+            # if the curr_node is a node that was
+            # not visited
+            if current_node not in visited:
+                print(current_node)
+                # add it to visited
+                visited.add(current_node)
+                # get the nodes that it is connected to.
+                neighbors = self.get_neighbors(current_node)
+                # for each of those nodes
+                for neighbor in neighbors:
+                    # add them to the queue
+                    q.enqueue(neighbor)
 
     def dft(self, starting_vertex):
         """
