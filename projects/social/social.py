@@ -164,10 +164,19 @@ class SocialGraph:
 
 if __name__ == '__main__':
     sg = SocialGraph()
-    sg.populate_graph(10, 2)
+    sg.populate_graph(10, 1)
     print(sg.friendships)
+
     connections = sg.get_all_social_paths(1)
-    print(connections)
+    total_paths_length = 0
+    for user_id in connections:
+        total_paths_length += len(connections[user_id])
+        average_degree_of_separation = total_paths_length / len(connections)
+
+    print(average_degree_of_separation)
+
+    # the higher the degree of separation the more steps it takes for a user
+    # to be connected to somebody else.
 
 
 # fisher yates shuffle
