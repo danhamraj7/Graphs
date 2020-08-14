@@ -106,7 +106,7 @@ def path_from_room():
         if len(path) > 0:
             new_path_move = random.randint(0, len(path) - 1)
 
-            print(new_path_move)
+            # print(new_path_move)
             stack.push(path[new_path_move])
             player.travel(path[new_path_move])
 
