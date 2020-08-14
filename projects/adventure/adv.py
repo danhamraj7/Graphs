@@ -1,3 +1,28 @@
+# understanding
+# what is this asking for
+# visit every single one of  500 rooms at least once
+# with the fewest steps
+# order of visitation does not matter
+# need to keep track of where we are going
+# need to keep track of where we have being
+# we need a list of direction that goes e w n s
+
+
+# plan
+# do not use spaghetti code
+# build a graph
+#  pick a room
+#  choose a direction to explore
+#  when arrival is a room without any exit
+#  backtrack to a room with an unexplored exit.
+# do that until all the rooms is explored
+
+# use
+# stacks
+# queues
+# dfs bfs
+
+
 from room import Room
 from player import Player
 from world import World
@@ -11,11 +36,12 @@ world = World()
 
 # You may uncomment the smaller graphs for development
 # and testing purposes.
-map_file = "maps/test_line.txt"
+
+# map_file = "maps/test_line.txt"
 # map_file = "maps/test_cross.txt"
 # map_file = "maps/test_loop.txt"
 # map_file = "maps/test_loop_fork.txt"
-# map_file = "maps/main_maze.txt"
+map_file = "maps/main_maze.txt"
 
 # Loads the map into a dictionary
 room_graph = literal_eval(open(map_file, "r").read())
