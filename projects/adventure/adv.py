@@ -81,7 +81,7 @@ def path_from_room():
     # create stack
     stack = Stack()
 
-    # make a set to track if we visited that node before
+    # make a set to track if we visited that romm before
     visited = set()
 
     # while visited is less than total amount of rooms
