@@ -15,7 +15,7 @@
 #  choose a direction to explore
 #  when arrival is a room without any exit
 #  backtrack to a room with an unexplored exit.
-# do that until all the rooms is explored
+# do that until all the rooms are explored
 
 # use
 # stacks
@@ -41,8 +41,8 @@ world = World()
 # map_file = "maps/test_line.txt"
 # map_file = "maps/test_cross.txt"
 # map_file = "maps/test_loop.txt"
-# map_file = "maps/test_loop_fork.txt"
-map_file = "maps/main_maze.txt"
+map_file = "maps/test_loop_fork.txt"
+#map_file = "maps/main_maze.txt"
 
 # Loads the map into a dictionary
 room_graph = literal_eval(open(map_file, "r").read())
@@ -107,14 +107,20 @@ def path_from_room():
             new_path_move = random.randint(0, len(path) - 1)
 
             # print(new_path_move)
+            # push new path move to path
             stack.push(path[new_path_move])
+            # push the player traveled to path
             player.travel(path[new_path_move])
 
             # print(path)
+            # append path to total moves
             total_moves.append(path[new_path_move])
         else:
+            # Remove from list
             last = stack.pop()
+            # add the last to entry because we have to go back
             player.travel(entry_exit(last))
+            # append the last to total moves to keep track
             total_moves.append(entry_exit(last))
 
 
