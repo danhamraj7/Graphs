@@ -26,6 +26,7 @@
 from room import Room
 from player import Player
 from world import World
+from util import Stack, Queue
 
 import random
 from ast import literal_eval
@@ -55,6 +56,25 @@ player = Player(world.starting_room)
 # Fill this out with directions to walk
 # traversal_path = ['n', 'n']
 traversal_path = []
+
+# keep track of the number of moves
+total_moves = []
+
+# when arrival is a room without any exit
+# return to next unexplored room
+
+
+def entry_exit(direction):
+    if direction == "n":
+        return "s"
+    elif direction == "s":
+        return "n"
+    elif direction == "e":
+        return "w"
+    elif direction == "w":
+        return "e"
+    else:
+        return None
 
 
 # TRAVERSAL TEST
